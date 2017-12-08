@@ -2,6 +2,7 @@
 # read the smb.conf manpage.
 # Run 'testparm' to verify the config is correct after
 # you modified it.
+# Create a passwd with "sudo smbpasswd -a <username>"
 
 [global]
         workgroup = SAMBA
@@ -27,7 +28,7 @@
         public = yes
         guest ok = yes
         path = /public
-        read only = No
+        writeable = yes
 
 [printers]
         comment = All Printers
