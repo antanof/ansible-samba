@@ -1,0 +1,6 @@
+[epel]
+name=Epel 7 Repo
+baseurl=http://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64
+enabled=1
+gpgcheck=0
+#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-epel7
