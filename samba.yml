@@ -17,8 +17,8 @@
      with_items:
       - samba.x86_64
       - sudo
-   - name: ajout règles sudo pour user ansible
-     template: src=/etc/ansible/samba/templates/sudoers.j2 dest=/etc/sudoers.d/ansible validate='visudo -cf ansible'
+   - name: ajout rÃ¨gles sudo pour user ansible
+     template: src=/etc/ansible/samba/templates/sudoers.j2 dest=/etc/sudoers.d/ansible validate='visudo -cf %s'
    - name: Launch Samba
      become: yes
      service: name=smb state=started
