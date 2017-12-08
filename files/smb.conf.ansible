@@ -27,7 +27,7 @@
         public = yes
         guest ok = yes
         path = /public
-        writable = yes
+        read only = No
 
 [printers]
         comment = All Printers
