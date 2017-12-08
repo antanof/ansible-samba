@@ -1,4 +1,4 @@
-[epel]
+[oracle]
 name=OL7 Repo
 baseurl=http://yum.oracle.com/repo/OracleLinux/OL7/latest/x86_64
 enabled=1
