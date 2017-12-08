@@ -12,14 +12,12 @@
      selinux: policy=targeted state=permissive
    - name: Copy oracle.repo
      copy: src=/etc/ansible/samba/files/oracle.repo dest=/etc/yum.repos.d/oracle.repo
-   - name: Install samba package
+   - name: Install commons packages
      yum: name={{ item }} state={{ state }} update_cache=yes
      with_items:
       - samba.x86_64
       - sudo
-   - name: ajout règles sudo pour user ansible
-     template: src=/etc/ansible/samba/templates/sudoers.j2 dest=/etc/sudoers.d/ansible validate='visudo -cf %s'
-   - name: Launch Samba
+   - name: Launch Samba 
      become: yes
      service: name=smb state=started
    - name: Create public directory
@@ -28,7 +26,7 @@
      command: "mv /etc/samba/smb.conf /etc/samba/smb.conf.bak"
    - name: Samba config
      copy: src=/etc/ansible/samba/files/smb.conf.ansible dest=/etc/samba/smb.conf
-#     lineinfile: path=/etc/samba/smb.conf line="[commun]\n\tcomment = Partage de fichiers commun\n\tbrowseable = yes\n\tpublic = yes\n\tpath = /public\n\twritable = yes\n" state=present
+#     lineinfile: path=/etc/samba/smb.conf regexp="^[commun]" insertbefore="^\[printers\]" line="[commun]\n\tcomment = Partage de fichiers commun\n\tbrowseable = yes\n\tpublic = yes\n\tpath = /public\n\twritable = yes\n" state=present
    - name: Create firewall rule
      command: "firewall-cmd --permanent --add-service=samba"
    - name: Reload firewall

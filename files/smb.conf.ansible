@@ -25,6 +25,7 @@
         comment = Partage de fichiers commun
         browseable = yes
         public = yes
+        guest ok = yes
         path = /public
         writable = yes
 
