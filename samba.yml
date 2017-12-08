@@ -24,10 +24,8 @@
      service: name=smb state=started
    - name: Create public directory
      file: path=/public state=directory mode=1777
-   - name: backup smb.conf
-     command: "mv /etc/samba/smb.conf /etc/samba/smb.conf.bak"
    - name: Samba config
-     copy: src=/etc/ansible/samba/files/smb.conf.ansible dest=/etc/samba/smb.conf
+     copy: src=/etc/ansible/samba/files/smb.conf.ansible dest=/etc/samba/smb.conf backup=yes
 #     lineinfile: path=/etc/samba/smb.conf line="[commun]\n\tcomment = Partage de fichiers commun\n\tbrowseable = yes\n\tpublic = yes\n\tpath = /public\n\twritable = yes\n" state=present
    - name: Create firewall rule
      command: "firewall-cmd --permanent --add-service=samba"
