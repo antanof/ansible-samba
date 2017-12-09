@@ -2,7 +2,7 @@
 - name: install Samba
   hosts: webservers
   remote_user: root
-  gather_facts: no
+  gather_facts: yes
   vars: 
    - state: present
   tasks:
@@ -17,6 +17,7 @@
      with_items:
       - samba.x86_64
       - sudo
+     when: ansible_os_family == "RedHat"
    - name: ajout règles sudo pour user ansible
      template: src=/etc/ansible/samba/templates/sudoers.j2 dest=/etc/sudoers.d/ansible validate='visudo -cf %s'
    - name: Launch Samba
